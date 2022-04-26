@@ -1,0 +1,15 @@
+{
+  "root": true,
+  "ignorePatterns": ["dist", "node_modules"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "no-console": 1,
+    "max-len": [1, { "code": 100, "tabWidth": 2 }]
+  }
+}
