@@ -11,16 +11,36 @@
   "scripts": {
     "clean": "rimraf dist coverage",
     "build": "npm run clean && tsc",
-    "pretty": "prettier --config .prettierrc '(lib|test)/**/*.ts' --write",
+    "pretty": "prettier --config .prettierrc '(src|test)/**/*.ts' --write",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "test": "jest --env=node --colors --coverage test"
   },
   "devDependencies": {
     "@types/node": "^17.0.27",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
     "eslint": "^8.14.0",
     "jest": "^27.5.1",
+    "prettier": "^2.6.2",
     "rimraf": "^3.0.2",
-    "ts-jest": "^27.1.4"
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": ".",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "lib/**/*.(t|j)s"
+    ],
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node"
   }
 }

@@ -1,8 +1,8 @@
 export class AuthError extends Error {
   errCode: string;
 
-  constructor(message: string = "Invalid API key") {
+  constructor(message = 'Invalid API key') {
     super(message);
-    this.errCode = "AuthError";
+    this.errCode = 'AuthError';
   }
 }
