@@ -5,9 +5,9 @@ import { API_KEY_ALGORITHM } from './constants';
 export class ApiKeyVerifier {
   constructor(
     private readonly masterSecret: string, // Base64 string
-    private readonly masterSecretPublishedDate: string, // YYYY-MM-DD format
-    private readonly secondaryMasterSecret: string = undefined, // Base64 string
-    private readonly validApiKeys: string[] = []
+    private readonly validApiKeys: string[] = [],
+    private readonly masterSecretPublishedDate: string = undefined, // YYYY-MM-DD format
+    private readonly secondaryMasterSecret: string = undefined // Base64 string
   ) {
     if (!this.masterSecret || this.masterSecret.length === 0) {
       throw new Error('ApiVerifier not properly set up');
@@ -30,17 +30,9 @@ export class ApiKeyVerifier {
       secret = this.masterSecret;
     }
     if (!secret || secret.length === 0) {
-      throw new AuthError('Invalid APA key');
+      throw new AuthError('Invalid API key');
     }
     return secret;
-  }
-
-  private decrypt(encryptedText: string, masterSecretBase64: string, ivBase64: string) {
-    const iv = Buffer.from(ivBase64, 'base64');
-    const encryptedTextBuf = Buffer.from(encryptedText, 'base64');
-    const key = Buffer.from(masterSecretBase64, 'base64');
-
-    return this.decryptBuffer(encryptedTextBuf, key, iv);
   }
 
   private decryptBuffer(encryptedBuf: Buffer, key: Buffer, iv: Buffer) {
@@ -62,7 +54,13 @@ export class ApiKeyVerifier {
 
     const masterSecret = this.chooseMasterSecret(date);
     const key = Buffer.from(masterSecret, 'base64');
-    const decryptedData = this.decryptBuffer(encryptedData, key, iv);
+    let decryptedData;
+    try {
+      decryptedData = this.decryptBuffer(encryptedData, key, iv);
+    } catch (error) {
+      console.log(error, error.message);
+      throw new AuthError('Invalid API key');
+    }
 
     const [decryptedDate, orgId] = decryptedData.split('#');
     if (decryptedDate !== date) {

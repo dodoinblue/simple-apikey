@@ -26,7 +26,7 @@ export class ApiKeyGenerator {
     const dateTimeUtc = new Date().toISOString();
     const date = dateTimeUtc.substring(0, 10);
 
-    const { iv, encryptedData } = this.encrypt(`${date}#${orgId}`, this.masterSecret);
+    const { iv, encryptedData } = this.encrypt(`${date}#${orgId}`);
     const secretBuffer = Buffer.concat([
       Buffer.from(date),
       Buffer.from(iv, 'base64'),
