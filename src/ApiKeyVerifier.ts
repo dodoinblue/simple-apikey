@@ -58,7 +58,6 @@ export class ApiKeyVerifier {
     try {
       decryptedData = this.decryptBuffer(encryptedData, key, iv);
     } catch (error) {
-      console.log(error, error.message);
       throw new AuthError('Invalid API key');
     }
 
