@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { ApiKeyGenerator, ApiKeyVerifier, AuthError } from '../src';
 
 const masterSecret = 'xx3ulm0xUnH0JYmcYWeYMrNiMkvmaLF4bxpzqPUqrqU=';

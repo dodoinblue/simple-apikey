@@ -10,7 +10,7 @@ export class ApiKeyGenerator {
     }
   }
 
-  private encrypt(text: string, ivBase64: string = undefined) {
+  private encrypt(text: string, ivBase64?: string) {
     const iv = ivBase64 ? Buffer.from(ivBase64, 'base64') : crypto.randomBytes(16);
     const key = Buffer.from(this.masterSecret, 'base64');
     const cipher = crypto.createCipheriv(API_KEY_ALGORITHM, Buffer.from(key), iv);

@@ -6,8 +6,8 @@ export class ApiKeyVerifier {
   constructor(
     private readonly masterSecret: string, // Base64 string
     private readonly validApiKeys: string[] = [],
-    private readonly masterSecretPublishedDate: string = undefined, // YYYY-MM-DD format
-    private readonly secondaryMasterSecret: string = undefined // Base64 string
+    private readonly masterSecretPublishedDate?: string, // YYYY-MM-DD format
+    private readonly secondaryMasterSecret?: string // Base64 string
   ) {
     if (!this.masterSecret || this.masterSecret.length === 0) {
       throw new Error('ApiVerifier not properly set up');

@@ -10,6 +10,15 @@
   ],
   "rules": {
     "no-console": 1,
-    "max-len": [1, { "code": 100, "tabWidth": 2 }]
+    "max-len": [
+      1,
+      {
+        "code": 100,
+        "tabWidth": 2,
+        "ignoreComments": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreTrailingComments": true
+      }
+    ]
   }
 }
