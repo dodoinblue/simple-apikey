@@ -7,6 +7,10 @@
   "files": [
     "dist/"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dodoinblue/simple-apikey"
+  },
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist coverage",
